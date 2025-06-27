@@ -1,0 +1,18 @@
+{
+  "name": "My Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",  
+    "context": ".",  
+    "args": {
+    }
+  },
+  "extensions": [
+    "hbenl.vscode-httpyac",  // httpYAC Erweiterung
+    "golang.go"  // Go Erweiterung
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "postCreateCommand": "echo 'Dev container started!'",
+  "remoteUser": "root"
+} 
