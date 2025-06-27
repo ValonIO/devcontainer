@@ -62,10 +62,9 @@ RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/s
     apt-get install -y helm
 
 # Switch to the non-root user
-USER ${USER}
+USER coder
 
 # Set the working directory
-WORKDIR /home/${USER}
-
+WORKDIR /home/coder
 # Ensure Go directories within user environment
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
