@@ -69,6 +69,3 @@ WORKDIR /home/${USER}
 
 # Ensure Go directories within user environment
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
-
-# Add a default command to keep the container running
-CMD ["tail", "-f", "/dev/null"]
