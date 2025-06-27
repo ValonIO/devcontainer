@@ -19,10 +19,6 @@ ARG USER=coder
 RUN useradd --create-home --shell /bin/bash ${USER} && \
     echo "${USER} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER} && \
     chmod 0440 /etc/sudoers.d/${USER}
-    
-#Copy SSH key generation script
-#COPY generate-ssh-key.sh /usr/local/bin/generate-ssh-key.sh
-#RUN chmod +x /usr/local/bin/generate-ssh-key.sh
 
 # Install Golang
 RUN apt-get update && \
@@ -64,14 +60,7 @@ RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/s
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list && \
     apt-get update && \
     apt-get install -y helm
-    
-    # COPY the Teleport tar.gz to the docker image
-#COPY teleport-tools-ionos-v16.4.17-linux-amd64.tar.gz /tmp/teleport.tar.gz
 
-# Install Teleport client from tar.gz
-#RUN tar -xzf /tmp/teleport.tar.gz -C /usr/local/bin --strip-components=1 && \
- #  rm /tmp/teleport.tar.gz
- 
 # Switch to the non-root user
 USER ${USER}
 
@@ -80,3 +69,6 @@ WORKDIR /home/${USER}
 
 # Ensure Go directories within user environment
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
+
+# Add a default command to keep the container running
+CMD ["tail", "-f", "/dev/null"]
