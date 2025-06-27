@@ -21,8 +21,8 @@ RUN useradd --create-home --shell /bin/bash ${USER} && \
     chmod 0440 /etc/sudoers.d/${USER}
     
 #Copy SSH key generation script
-COPY generate-ssh-key.sh /usr/local/bin/generate-ssh-key.sh
-RUN chmod +x /usr/local/bin/generate-ssh-key.sh
+#COPY generate-ssh-key.sh /usr/local/bin/generate-ssh-key.sh
+#RUN chmod +x /usr/local/bin/generate-ssh-key.sh
 
 # Install Golang
 RUN apt-get update && \
